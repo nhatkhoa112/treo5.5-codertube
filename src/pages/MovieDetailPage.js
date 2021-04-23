@@ -51,14 +51,24 @@ const MovieDetailPage = () => {
                         <div className="popularity">
                             <strong>Popularity:</strong>{movieDetail.popularity}
                         </div>
+                        <strong>Production:</strong>
                         <div className="production">
-                            <strong>Production:</strong> {movieDetail.production_companies.map((p) => 
-                                                                                                p.logo_path === null ? 
-                                                                                                (
-                                                                                                    <p>{p.name}</p>
-                                                                                                ) : (
-                                                                                                    <img src={`https://image.tmdb.org/t/p/w500/${p.logo_path}` } alt={p.name} />
-                                                                                                )            )}
+                                {movieDetail.production_companies.map((p) => 
+                                                p.logo_path === null ? 
+                                                (
+                                                    <p className="production-text">{p.name}</p>
+                                                ) : (
+                                                    <img src={`https://image.tmdb.org/t/p/w500/${p.logo_path}` } alt={p.name} />
+                                                ))}
+                        </div>
+                        <div className="form-comments">
+                            <div className="comment-list">
+                                
+                            </div>
+                            <div className="input" >
+                                <input type="text" placeholder="comment" />
+                                <input type="submit" value="enter" />
+                            </div>
                         </div>
                     </div>
                 </div>

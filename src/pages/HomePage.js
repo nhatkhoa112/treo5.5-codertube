@@ -8,8 +8,10 @@ const url = 'https://api.themoviedb.org/3/movie'
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [query,setQuery] = useState("");
+    const [genres, setGenres] = useState([]);
 
-    
+
+    console.log(genres)
     const fetchMovies = async () => {
         let res;
         if(query !== ''){
@@ -19,38 +21,59 @@ const HomePage = () => {
         }
         const json = await res.json();
         setMovies(json.results);
+        console.log(json);
 
     }
+
+    const fetchGenresMovie = async () => {
+        let url = `https://api.themoviedb.org/3/genre/movie/list?&api_key=${API_KEY}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        setGenres(data);
+    }
+
+
     useEffect(() => {
-        fetchMovies()
-    },[movies])
+        fetchMovies();
+        fetchGenresMovie();
+    },[])
 
     return (
         <div>
         <NavigationBar quey={query} setQuery={setQuery} />
-        <Container>
-            <h1 className="text-center mt-51">  Movies</h1>
-            <Row>
-                <Col className="col-card"> 
-                    {movies.map((m) =>{
-                        return <Card key={m.id} style={{ width: '18rem' , margin: "20px", height: "400px"}}>
-                            <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`} />
-                            <Card.Body>
-                                <Card.Title>{m.title}</Card.Title>
-                                <Card.Text style={{height: "100px", overflow: "hidden", overflowY: "auto" }}>
-                                <strong><u>Overview:</u></strong> {m.overview}
-                                </Card.Text>
-                                <Button variant="primary">
-                                    <Nav.Link as={Link} to={"/movies/" + m.id}>
-                                        More Details
-                                    </Nav.Link>
-                                </Button>
-                            </Card.Body>
-                        </Card>   
-                    })}                   
-                </Col>
-            </Row>
-        </Container>
+        <div className="main-content">
+            
+            <div className="sidebar">
+
+            </div>
+            <div className="movies-content">
+                <h1 className="text-center mt-51">Movies</h1>
+                <Row>
+                    <Col className="col-card"> 
+                        {movies.map((m) =>{
+                            return <Card  key={m.id} style={{ width: '20rem' , margin: "20px", height: "860px"}}>
+                                <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`} style={{height: "200px"}} />
+                                <Card.Body>
+                                    <Card.Title style={{height: "100px", fontSize: "26px", paddingTop: "10px"}}>{m.title}</Card.Title>
+                                    <div className="genres">
+                                        {genres.genres.filter(g => m.genre_ids.includes(g.id)).map( e  => <button className="genre-name-btn" key={e.id}>{e.name}</button> )}
+                                    </div>
+                                    <Card.Text style={{height: "200px", overflow: "hidden", overflowY: "auto" }}>
+                                    <strong><u>Overview:</u></strong> {m.overview}
+                                    </Card.Text>
+                                    <Button variant="primary">
+                                        <Nav.Link as={Link} to={"/movies/" + m.id}>
+                                            More Details
+                                        </Nav.Link>
+                                    </Button>
+                                </Card.Body>
+                            </Card>   
+                        })}                   
+                    </Col>
+                </Row>
+            </div>
+           
+        </div>
         </div>
     )
 }

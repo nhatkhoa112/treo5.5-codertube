@@ -82,7 +82,7 @@ header .brand a {
 }
 
 header .nav-links {
-  width: 80%;
+  width: 92%;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -139,11 +139,27 @@ header input[type="submit"]:hover {
   cursor: pointer;
 }
 
+.main-content{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content .sidebar{
+    flex: 1
+}
+.main-content .movies-content{
+    flex: 5;
+}
 
 .col-card{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.col-card .card{
+    box-shadow: 0 5px 10px #ccc !important;
 }
 
 button a {
@@ -185,7 +201,7 @@ button a {
 }
 
 .text-content div{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .production{
@@ -193,14 +209,88 @@ button a {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+}
+
+.production .production-text{
+    border: 2px #ccc solid;
+    padding: 0 10px;
+    border-radius: 15px 15px;
+    margin-right: 10px; 
+}
+
+.production .production-text:hover{
+    background: #ccc;
+    color: white;
 }
 
 .production img{    
     width: 70px;
-    margin-left: 10px;
+    margin: 5px 10px;
+}
+
+.production img:hover{
+    background: #ccc;
+    color: white;
 }
 
 .vote{
     display:flex;
     justify-content: space-between;
+}
+
+.form-comments{
+    border: 5px rgb(111, 130, 224) double;
+    width: 100%;
+    height: 30vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-comments .comment-list{
+    flex: 4;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+
+.form-comments .input{
+    flex: 1;
+    display: flex;
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-between;
+}
+
+.form-comments .input input[type="text"]{
+    width: 80%;
+    height: 100%;
+    border: none;
+    padding: 0 0 0 20px;
+    border: 5px;
+    box-shadow: 0 5 10px #ccc;
+}
+
+
+.form-comments .input input[type="submit"]{
+    width: 20%;
+    border: none;
+    background: rgb(111, 130, 224);
+    color: center;
+}
+
+.genres {
+    height: 50px;
+}
+
+.genre-name-btn{
+    font-size: 12px;
+    border-radius: 10px;
+    margin-right: 5px; 
+    border: none;
+    background: #4CA846;
+    color: white;
+    cursor: text!important;
+    margin-bottom: 0px;
 }
