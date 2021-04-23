@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
+
+:root {
+  --primary: #032541 !important;
+  --secondary: #21d07a !important;
+  --white: #fff !important;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Header Styles */
+header {
+  background-color: var(--primary);
+}
+
+header .inner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+header a {
+  color: var(--white);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+header a:hover {
+  opacity: 0.7;
+}
+
+header .brand a {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+header .nav-links {
+  width: 80%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+
+
+header .nav-links li {
+  width: 100%;
+  margin-right: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .nav-links li a{
+}
+
+header .nav-links li:last-child {
+  margin-right: 0;
+}
+
+header input[type="text"]{
+    height: 36px;
+    border: none;
+    width: 300px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+header input::placeholder{
+    margin-left: 50px;
+}
+
+header input[type="submit"] {
+  padding: 10px 15px;
+  background-color: var(--secondary) !important;
+  color: var(--primary) !important;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  line-height: 1.1;
+}
+
+header input[type="submit"]:hover {
+  background-color: #1aa762 !important;
+  opacity: 1;
+  cursor: pointer;
+}
+
+
+.col-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
