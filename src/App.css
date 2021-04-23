@@ -145,3 +145,62 @@ header input[type="submit"]:hover {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+button a {
+    color: black;
+}
+
+.card-movie{
+    margin-top: 50px;
+    padding: 20px;
+    border: #ccc 3px solid;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    box-shadow: 0 5px 10px #ccc;
+}
+
+.card-movie .img-content{
+    flex: 1;
+}
+
+.card-movie .text-content{
+    flex: 1;
+    padding: 0 30px;
+}
+
+.text-content .genre-btn{
+    border-radius: 10px 10px;
+    border: none;
+    cursor: pointer;
+    background: rgb(111, 130, 224);
+    margin-right: 10px;
+    color: white;   
+}
+
+.text-content .genre-btn:hover{
+    background: rgb(76, 100, 219);
+    
+}
+
+.text-content div{
+    margin-bottom: 20px;
+}
+
+.production{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.production img{    
+    width: 70px;
+    margin-left: 10px;
+}
+
+.vote{
+    display:flex;
+    justify-content: space-between;
+}

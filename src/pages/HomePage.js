@@ -1,5 +1,6 @@
 import React, { useState,useEffect} from 'react';
-import { Container, Row, Col, Card , Button} from 'react-bootstrap';
+import { Container, Row, Col, Card , Button, Nav} from 'react-bootstrap';
+import {Link} from "react-router-dom";
 import NavigationBar from '../components/NavigationBar';
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const url = 'https://api.themoviedb.org/3/movie'
@@ -8,12 +9,11 @@ const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [query,setQuery] = useState("");
 
-    console.log(query);
     
     const fetchMovies = async () => {
         let res;
         if(query !== ''){
-            res = await fetch(`${url}/q=${query}?api_key=${API_KEY}`)
+            res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`)
         } else {
             res = await fetch(`${url}/upcoming?api_key=${API_KEY}`);
         }
@@ -23,7 +23,6 @@ const HomePage = () => {
     }
     useEffect(() => {
         fetchMovies()
-        console.log(movies)
     },[movies])
 
     return (
@@ -41,7 +40,11 @@ const HomePage = () => {
                                 <Card.Text style={{height: "100px", overflow: "hidden", overflowY: "auto" }}>
                                 <strong><u>Overview:</u></strong> {m.overview}
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Button variant="primary">
+                                    <Nav.Link as={Link} to={"/movies/" + m.id}>
+                                        More Details
+                                    </Nav.Link>
+                                </Button>
                             </Card.Body>
                         </Card>   
                     })}                   
