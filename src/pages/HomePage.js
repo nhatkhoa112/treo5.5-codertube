@@ -1,30 +1,81 @@
 import React, { useState,useEffect} from 'react';
-import { Container, Row, Col, Card , Button, Nav} from 'react-bootstrap';
+import {  Row, Col, Card , Button, Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import NavigationBar from '../components/NavigationBar';
+import SideBar from '../components/SideBar';
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const url = 'https://api.themoviedb.org/3/movie'
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [query,setQuery] = useState("");
-    const [genres, setGenres] = useState([]);
+    const [genres, setGenres] = useState({genres: []});
+    const [gen_ids, setGen_ids] = useState([]);
+    const [moviesDefault, setMoviesDefault] = useState([]);
 
-
-    console.log(genres)
+    
     const fetchMovies = async () => {
-        let res;
+        let newUrl = `${url}/upcoming?api_key=${API_KEY}`;
         if(query !== ''){
-            res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`)
-        } else {
-            res = await fetch(`${url}/upcoming?api_key=${API_KEY}`);
-        }
+            newUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
+        } 
+        const res = await fetch(newUrl);
         const json = await res.json();
         setMovies(json.results);
-        console.log(json);
+        setMoviesDefault(json.results);
+        
+    }
+
+
+
+    const getCategory = (newG) => {
+        let g = movies.map(m => m.genre_ids);
+        let gdx = g.join().split(",").map(m => parseInt(m));
+        let p = splitNumber(gdx) ;
+        let results = [] ;
+        for(let i = 0; i< p[0].length; i++ ){
+            let h = {};
+            h.id = p[0][i];
+            h.count = p[1][i];
+            results.push(h);
+        }
+        for(let i of results){
+            for(let j of newG.genres){
+                if(i.id === j.id){
+                    i['name'] = j.name;
+                }
+            }
+        }
+
+        setGen_ids(results);
+
+
 
     }
 
+
+function splitNumber(arr) {
+    var a = [],
+    b = [],
+    prev;
+
+    arr.sort();
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] !== prev) {
+        a.push(arr[i]);
+        b.push(1);
+        } else {
+        b[b.length - 1]++;
+        }
+        prev = arr[i];
+    }
+
+    return [a, b];
+}
+
+
+
+    
     const fetchGenresMovie = async () => {
         let url = `https://api.themoviedb.org/3/genre/movie/list?&api_key=${API_KEY}`;
         const res = await fetch(url);
@@ -35,8 +86,18 @@ const HomePage = () => {
 
     useEffect(() => {
         fetchMovies();
+        
+    },[query])
+
+    useEffect(() => {
         fetchGenresMovie();
-    },[])
+    }, [movies])
+
+
+    useEffect(() => {
+        getCategory(genres);
+    }, [genres])
+
 
     return (
         <div>
@@ -44,7 +105,7 @@ const HomePage = () => {
         <div className="main-content">
             
             <div className="sidebar">
-
+                <SideBar moviesDefault={moviesDefault} movies={movies} setMovies={setMovies} gen_ids={gen_ids}  />
             </div>
             <div className="movies-content">
                 <h1 className="text-center mt-51">Movies</h1>
@@ -66,6 +127,18 @@ const HomePage = () => {
                                             More Details
                                         </Nav.Link>
                                     </Button>
+                                    <div className="rating">
+                                        <h4><strong>Rating: </strong></h4>
+                                        <h4><strong>{m.vote_average}  </strong></h4> <h6>  from  </h6>  <h6>    {m.vote_count}   </h6> <h6>  votes  </h6>  
+                                    </div>
+                                    <div className="popularity">
+                                        <h4><strong>Popularity: </strong></h4>
+                                        <h6> {m.popularity} </h6> 
+                                    </div>
+                                    <div className="release-date">
+                                        <h4><strong> Release Date: </strong></h4>
+                                        <h6> {m.release_date} </h6> 
+                                    </div>
                                 </Card.Body>
                             </Card>   
                         })}                   

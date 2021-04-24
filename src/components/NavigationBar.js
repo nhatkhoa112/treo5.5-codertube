@@ -5,7 +5,7 @@ import {Nav} from 'react-bootstrap';
 
 
 const NavigationBar = ({query, setQuery}) => {
-
+    
     const onChange = (e) => {
         e.preventDefault();
         setQuery(e.target.value);
@@ -30,7 +30,8 @@ const NavigationBar = ({query, setQuery}) => {
                                                 placeholder="Movie Name" 
                                                 value={query}
                                                 onChange={onChange}
-                                                />                                        <input type="submit" 
+                                                />                                        
+                                                <input type="submit" 
                                                 value="Search"
                                                 />
                                     </form>

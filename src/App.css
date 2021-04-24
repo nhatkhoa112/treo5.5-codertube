@@ -108,6 +108,7 @@ header .nav-links li:last-child {
 }
 
 header input[type="text"]{
+    padding: 0 20px;
     height: 36px;
     border: none;
     width: 300px;
@@ -140,16 +141,24 @@ header input[type="submit"]:hover {
 }
 
 .main-content{
+    position: relative;
     width: 100%;
+    height: 120vh;
     display: flex;
     justify-content: space-between;
 }
 
 .main-content .sidebar{
-    flex: 1
+    flex: 1;
+    background: #736CED;    
+    height: 100%;
+    padding: 15px;
 }
 .main-content .movies-content{
     flex: 5;
+    height: 100%;
+    overflow:hidden;
+    overflow-y: auto;
 }
 
 .col-card{
@@ -160,6 +169,10 @@ header input[type="submit"]:hover {
 
 .col-card .card{
     box-shadow: 0 5px 10px #ccc !important;
+}
+
+.col-card .card:hover{
+    box-shadow: 0 10px 20px #ccc !important;
 }
 
 button a {
@@ -182,6 +195,7 @@ button a {
 }
 
 .card-movie .text-content{
+    position:relative;
     flex: 1;
     padding: 0 30px;
 }
@@ -246,6 +260,9 @@ button a {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    bottom: -5px;
+    left: 5px;
 }
 
 .form-comments .comment-list{
@@ -293,4 +310,152 @@ button a {
     color: white;
     cursor: text!important;
     margin-bottom: 0px;
+}
+
+.rating{
+    margin-top: 15px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    border-top: 2px solid #ccc;
+ 
+
+}
+
+.rating h4{
+    font-size: 20px;
+}
+
+.rating strong, h6{
+    margin-right: 3px;  
+}
+
+.rating p{
+    font-weight: 300;   
+}
+
+.popularity{
+    padding: 10px 15px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    border-top: 2px solid #ccc;
+
+}
+
+.popularity h6{
+    margin-left: 5px;
+}
+
+.release-date{
+    padding: 10px 15px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    border-top: 2px solid #ccc;
+
+}
+
+.release-date    h6{
+    margin-left: 5px;
+}
+
+
+.popularity h4{
+    font-size: 20px;
+}
+
+.release-date h4{
+    font-size: 20px;
+}
+
+.btn-primary{
+    background: #4CA846 !important;
+}
+
+.btn-primary:hover{
+    background: #32812c !important;
+}
+
+.btn-primary a {
+    color: white;
+}
+
+.btn-primary a:hover{
+    color: white !important;
+}
+
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-content .form-content{
+    flex: 1;
+    background: white;
+    border: 1px #ccc solid;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-content .form-content div{
+    flex: 1;
+    display: flex;
+    align-items:center;
+    padding: 10px 25px;
+    border-bottom: 1px #ccc solid;
+}
+
+.sidebar-content .category{
+    flex: 2;
+}
+
+
+.category{ 
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.gen-btn{
+    border: 1px #167AF6 solid;
+    background: #9F9FED;
+    color: white;
+    border-radius: 3px;
+    margin-right:3px ;
+}
+
+.gen-btn:hover{
+    border: 1px black solid;
+    background: #7b7bdf;
+}
+
+.total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 13px 0;
+}
+
+.total .total-btn{
+    border-radius: 3px;
+    border: none;
+    padding: 5px 10px;
+    background: crimson;
+    color: white;
+}
+
+.total .total-btn:hover{
+    border: crimson;
+    background: white;
+    color: crimson;
+
 }

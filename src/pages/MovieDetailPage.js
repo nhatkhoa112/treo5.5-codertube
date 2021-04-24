@@ -13,7 +13,6 @@ const MovieDetailPage = () => {
         const url =`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY  }`;
         const res = await fetch(url);
         const json = await res.json();
-        console.log(json)
 
         setMovieDetail(json);
     }
@@ -27,7 +26,7 @@ const MovieDetailPage = () => {
         <div>
             <NavigationBar />
             <div className="d-flex justify-content-center align-items-center">
-                <div className="container  card-movie">
+                <div className="container  card-movie" style={{height: "140vh"}}>
                     <img className="img-content" src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`} alt={movieDetail.title} />
                     <div className="text-content">
                         <h1 className="text-center m-5">{movieDetail.title}</h1>
@@ -48,7 +47,7 @@ const MovieDetailPage = () => {
                         <div className="budget">
                             <strong>Budget:</strong>    {movieDetail.budget}
                         </div>
-                        <div className="popularity">
+                        <div className="popuy">
                             <strong>Popularity:</strong>{movieDetail.popularity}
                         </div>
                         <strong>Production:</strong>
@@ -67,7 +66,7 @@ const MovieDetailPage = () => {
                             </div>
                             <div className="input" >
                                 <input type="text" placeholder="comment" />
-                                <input type="submit" value="enter" />
+                                <input type="submit" value="Enter" />
                             </div>
                         </div>
                     </div>
