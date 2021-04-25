@@ -23,7 +23,7 @@ const SideBar = ({moviesDefault, movies, setMovies,gen_ids}) => {
 
             <div className="category">
                 {gen_ids.map(g => {
-                    let newMovies =  movies.filter(m => m.genre_ids.includes(g.id) )
+                    let newMovies =  moviesDefault.filter(m => m.genre_ids.includes(g.id) )
                     return (<button key={g.id} 
                                     onClick={() => setMovies(newMovies)}
                                     className="gen-btn">

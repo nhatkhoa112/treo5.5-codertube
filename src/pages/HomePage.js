@@ -29,7 +29,7 @@ const HomePage = () => {
 
 
     const getCategory = (newG) => {
-        let g = movies.map(m => m.genre_ids);
+        let g = moviesDefault.map(m => m.genre_ids);
         let gdx = g.join().split(",").map(m => parseInt(m));
         let p = splitNumber(gdx) ;
         let results = [] ;
