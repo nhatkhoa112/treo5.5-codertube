@@ -31,9 +31,9 @@ const NavigationBar = ({query, setQuery}) => {
                                                 value={query}
                                                 onChange={onChange}
                                                 />                                        
-                                                <input type="submit" 
+                                                {/* <input type="submit" 
                                                 value="Search"
-                                                />
+                                                /> */}
                                     </form>
                                 </li>
                                 

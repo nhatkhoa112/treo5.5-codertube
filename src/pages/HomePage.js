@@ -23,9 +23,7 @@ const HomePage = () => {
         const json = await res.json();
         setMovies(json.results);
         setMoviesDefault(json.results);
-        
     }
-
 
 
     const getCategory = (newG) => {
@@ -101,52 +99,63 @@ function splitNumber(arr) {
 
     return (
         <div>
-        <NavigationBar quey={query} setQuery={setQuery} />
-        <div className="main-content">
-            
-            <div className="sidebar">
-                <SideBar moviesDefault={moviesDefault} movies={movies} setMovies={setMovies} gen_ids={gen_ids}  />
+            <NavigationBar quey={query} setQuery={setQuery} />
+            <div className="main-content">
+                
+                <div className="sidebar">
+                    <SideBar moviesDefault={moviesDefault} movies={movies} setMovies={setMovies} gen_ids={gen_ids}  />
+                </div>
+                <div className="movies-content">
+                    <h1 className="text-center mt-51">Movies</h1>
+                    <div className="sort">
+                        <button 
+                            onClick={() => setMovies(movies.sort((a,b) =>  a.popularity - b.popularity))}
+                            className="sort-btn">
+                            Most popular to Least popular
+                        </button>
+                        <button 
+                            onClick={() =>setMovies(movies.sort((a,b) =>  b.popularity - a.popularity))}
+                            className="sort-btn">
+                            Least popular to  Most popular
+                        </button>
+                    </div>
+                    <Row>
+                        <Col className="col-card"> 
+                            {movies.map((m) =>{
+                                return <Card  key={m.id} style={{ width: '20rem' , margin: "20px", height: "860px"}}>
+                                    <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`} style={{height: "200px"}} />
+                                    <Card.Body>
+                                        <Card.Title style={{height: "100px", fontSize: "26px", paddingTop: "10px"}}>{m.title}</Card.Title>
+                                        <div className="genres">
+                                            {genres.genres.filter(g => m.genre_ids.includes(g.id)).map( e  => <button className="genre-name-btn" key={e.id}>{e.name}</button> )}
+                                        </div>
+                                        <Card.Text style={{height: "200px", overflow: "hidden", overflowY: "auto" }}>
+                                        <strong><u>Overview:</u></strong> {m.overview}
+                                        </Card.Text>
+                                        <Button variant="primary">
+                                            <Nav.Link as={Link} to={"/movies/" + m.id}>
+                                                More Details
+                                            </Nav.Link>
+                                        </Button>
+                                        <div className="rating">
+                                            <h4><strong>Rating: </strong></h4>
+                                            <h4><strong>{m.vote_average}  </strong></h4> <h6>  from  </h6>  <h6>    {m.vote_count}   </h6> <h6>  votes  </h6>  
+                                        </div>
+                                        <div className="popularity">
+                                            <h4><strong>Popularity: </strong></h4>
+                                            <h6> {m.popularity} </h6> 
+                                        </div>
+                                        <div className="release-date">
+                                            <h4><strong> Release Date: </strong></h4>
+                                            <h6> {m.release_date} </h6> 
+                                        </div>
+                                    </Card.Body>
+                                </Card>   
+                            })}                   
+                        </Col>
+                    </Row>
+                </div>
             </div>
-            <div className="movies-content">
-                <h1 className="text-center mt-51">Movies</h1>
-                <Row>
-                    <Col className="col-card"> 
-                        {movies.map((m) =>{
-                            return <Card  key={m.id} style={{ width: '20rem' , margin: "20px", height: "860px"}}>
-                                <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${m.backdrop_path}`} style={{height: "200px"}} />
-                                <Card.Body>
-                                    <Card.Title style={{height: "100px", fontSize: "26px", paddingTop: "10px"}}>{m.title}</Card.Title>
-                                    <div className="genres">
-                                        {genres.genres.filter(g => m.genre_ids.includes(g.id)).map( e  => <button className="genre-name-btn" key={e.id}>{e.name}</button> )}
-                                    </div>
-                                    <Card.Text style={{height: "200px", overflow: "hidden", overflowY: "auto" }}>
-                                    <strong><u>Overview:</u></strong> {m.overview}
-                                    </Card.Text>
-                                    <Button variant="primary">
-                                        <Nav.Link as={Link} to={"/movies/" + m.id}>
-                                            More Details
-                                        </Nav.Link>
-                                    </Button>
-                                    <div className="rating">
-                                        <h4><strong>Rating: </strong></h4>
-                                        <h4><strong>{m.vote_average}  </strong></h4> <h6>  from  </h6>  <h6>    {m.vote_count}   </h6> <h6>  votes  </h6>  
-                                    </div>
-                                    <div className="popularity">
-                                        <h4><strong>Popularity: </strong></h4>
-                                        <h6> {m.popularity} </h6> 
-                                    </div>
-                                    <div className="release-date">
-                                        <h4><strong> Release Date: </strong></h4>
-                                        <h6> {m.release_date} </h6> 
-                                    </div>
-                                </Card.Body>
-                            </Card>   
-                        })}                   
-                    </Col>
-                </Row>
-            </div>
-           
-        </div>
         </div>
     )
 }

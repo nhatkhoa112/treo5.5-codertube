@@ -146,6 +146,7 @@ header input[type="submit"]:hover {
     height: 120vh;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .main-content .sidebar{
@@ -160,6 +161,33 @@ header input[type="submit"]:hover {
     overflow:hidden;
     overflow-y: auto;
 }
+
+
+@media screen and (max-width: 1200px)  {
+
+
+  .main-content .sidebar {
+    flex: 1;
+  }
+  .main-content .movies-content {
+    flex: 3;
+  }
+}
+
+@media screen and (max-width: 800px)  {
+
+.main-content{
+      flex-direction: column;
+  }
+  .main-content .sidebar {
+    width: 100%;
+
+  }
+  .main-content .movies-content {
+    width: 100%;
+  }
+}
+
 
 .col-card{
     display: flex;
@@ -216,6 +244,12 @@ button a {
 
 .text-content div{
     margin-bottom: 10px;
+}
+
+.text-content .overview{
+    height: 170px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .production{
@@ -457,5 +491,40 @@ button a {
     border: crimson;
     background: white;
     color: crimson;
+
+}
+
+.sort{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sort .sort-btn{
+    border-radius: 5px;
+    border: 2px #167AF6 solid;
+    padding: 5px 10px;
+    background: #E3C5BB;
+    color: white;
+}
+
+.sort .sort-btn:hover{
+    border: 2px #E3C5BB solid;
+    color: #E3C5BB;
+    background:white;
+}
+
+.comment-list{
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-list .comment-item{
+    width: 90%;
+    padding: 0 15px;
+    border-bottom: 2px #6F82E0 dotted;
+    margin: 0px;
 
 }
