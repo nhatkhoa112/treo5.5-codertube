@@ -3,6 +3,7 @@ import {  Row, Col, Card , Button, Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import NavigationBar from '../components/NavigationBar';
 import SideBar from '../components/SideBar';
+import ModalBox from '../components/ModalBox';
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const url = 'https://api.themoviedb.org/3/movie'
 
@@ -137,11 +138,15 @@ function splitNumber(arr) {
                                         <Card.Text style={{height: "200px", overflow: "hidden", overflowY: "auto" }}>
                                         <strong><u>Overview:</u></strong> {m.overview}
                                         </Card.Text>
-                                        <Button variant="primary">
-                                            <Nav.Link as={Link} to={"/movies/" + m.id}>
-                                                More Details
-                                            </Nav.Link>
-                                        </Button>
+                                        <div className="buttons">
+                                            <Button variant="primary">
+                                                <Nav.Link as={Link} to={"/movies/" + m.id}>
+                                                    More Details
+                                                </Nav.Link>
+                                            </Button>
+                                            <ModalBox query={m.title} />
+                                        </div>
+                                        
                                         <div className="rating">
                                             <h4><strong>Rating: </strong></h4>
                                             <h4><strong>{m.vote_average}  </strong></h4> <h6>  from  </h6>  <h6>    {m.vote_count}   </h6> <h6>  votes  </h6>  

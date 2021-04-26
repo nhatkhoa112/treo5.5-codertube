@@ -528,3 +528,13 @@ button a {
     margin: 0px;
 
 }
+
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.trailer{
+    height: 100% !important;
+}
