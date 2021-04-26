@@ -14,14 +14,18 @@ const HomePage = () => {
     const [moviesDefault, setMoviesDefault] = useState([]);
 
     
-    const fetchMovies = async () => {
+    const fetchMovies = async (newM) => {
         let newUrl = `${url}/upcoming?api_key=${API_KEY}`;
         if(query !== ''){
             newUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
         } 
         const res = await fetch(newUrl);
         const json = await res.json();
-        setMovies(json.results);
+        if(!newM){
+            setMovies(json.results);
+        } else {
+            setMovies(newM)
+        }
         setMoviesDefault(json.results);
     }
 
@@ -73,6 +77,7 @@ function splitNumber(arr) {
 
 
 
+
     
     const fetchGenresMovie = async () => {
         let url = `https://api.themoviedb.org/3/genre/movie/list?&api_key=${API_KEY}`;
@@ -109,14 +114,14 @@ function splitNumber(arr) {
                     <h1 className="text-center mt-51">Movies</h1>
                     <div className="sort">
                         <button 
-                            onClick={() => setMovies(movies.sort((a,b) =>  a.popularity - b.popularity))}
-                            className="sort-btn">
-                            Most popular to Least popular
-                        </button>
-                        <button 
-                            onClick={() =>setMovies(movies.sort((a,b) =>  b.popularity - a.popularity))}
+                            onClick={() => fetchMovies(movies.sort((a,b) => a.popularity - b.popularity))}
                             className="sort-btn">
                             Least popular to  Most popular
+                        </button>
+                        <button 
+                            onClick={() => fetchMovies(movies.sort((a,b) => b.popularity - a.popularity))}
+                            className="sort-btn">
+                            Most popular to Least popular
                         </button>
                     </div>
                     <Row>

@@ -18,7 +18,6 @@ function App() {
         ]
       }))
     } else {
-      console.log({appState : JSON.parse(appState)})
     }
   }, [])
 
