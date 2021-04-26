@@ -13,8 +13,9 @@ const HomePage = () => {
     const [genres, setGenres] = useState({genres: []});
     const [gen_ids, setGen_ids] = useState([]);
     const [moviesDefault, setMoviesDefault] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [movieTrailerKey, setMovieTrailerKey] = useState("");
 
-    
     const fetchMovies = async (newM) => {
         let newUrl = `${url}/upcoming?api_key=${API_KEY}`;
         if(query !== ''){
@@ -87,6 +88,16 @@ function splitNumber(arr) {
         setGenres(data);
     }
 
+    const onFetchYouTubeVideoId = async (id) => {
+        const newUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
+        const resp = await fetch(newUrl);
+        const json = await resp.json();
+        if (json.results.length > 0) {
+            setMovieTrailerKey(json.results[0]);
+            setModalOpen(!modalOpen)
+        }
+    };
+
 
     useEffect(() => {
         fetchMovies();
@@ -126,6 +137,7 @@ function splitNumber(arr) {
                         </button>
                     </div>
                     <Row>
+                        <ModalBox  movieTrailerKey={movieTrailerKey} modalOpen={modalOpen} setModalOpen={setModalOpen}  />
                         <Col className="col-card"> 
                             {movies.map((m) =>{
                                 return <Card  key={m.id} style={{ width: '20rem' , margin: "20px", height: "860px"}}>
@@ -144,7 +156,11 @@ function splitNumber(arr) {
                                                     More Details
                                                 </Nav.Link>
                                             </Button>
-                                            <ModalBox query={m.title} />
+                                            <Button 
+                                                    onClick={() => onFetchYouTubeVideoId(m.id)}
+                                                    variant="primary" 
+                                                    className="trailer" >View Trailer</Button>
+
                                         </div>
                                         
                                         <div className="rating">
