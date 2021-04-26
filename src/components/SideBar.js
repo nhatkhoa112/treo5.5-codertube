@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SideBar = ({moviesDefault, movies, setMovies,gen_ids}) => {
+const SideBar = ({moviesDefault, movies, setMovies,genresOfAllMoviesInPage}) => {
 
 
     return (
@@ -22,7 +22,7 @@ const SideBar = ({moviesDefault, movies, setMovies,gen_ids}) => {
             </div>
 
             <div className="category">
-                {gen_ids.map(g => {
+                {genresOfAllMoviesInPage.map(g => {
                     let newMovies =  moviesDefault.filter(m => m.genre_ids.includes(g.id) )
                     return (<button key={g.id} 
                                     onClick={() => setMovies(newMovies)}

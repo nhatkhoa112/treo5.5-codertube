@@ -11,7 +11,7 @@ const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [query,setQuery] = useState("");
     const [genres, setGenres] = useState({genres: []});
-    const [gen_ids, setGen_ids] = useState([]);
+    const [genresOfAllMoviesInPage, setGenresOfAllMoviesInPage] = useState([]);
     const [moviesDefault, setMoviesDefault] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [movieTrailerKey, setMovieTrailerKey] = useState("");
@@ -51,7 +51,7 @@ const HomePage = () => {
             }
         }
 
-        setGen_ids(results);
+        setGenresOfAllMoviesInPage(results);
 
 
 
@@ -120,7 +120,7 @@ function splitNumber(arr) {
             <div className="main-content">
                 
                 <div className="sidebar">
-                    <SideBar moviesDefault={moviesDefault} movies={movies} setMovies={setMovies} gen_ids={gen_ids}  />
+                    <SideBar moviesDefault={moviesDefault} movies={movies} setMovies={setMovies} genresOfAllMoviesInPage={genresOfAllMoviesInPage}  />
                 </div>
                 <div className="movies-content">
                     <h1 className="text-center mt-51">Movies</h1>
